@@ -52,7 +52,7 @@ function attack(){
 
 
     if (ourAccuracyTester < 0.7){ //if we hit
-      console.log(`ourAccuracyTester ${ourAccuracyTester} <0.7, so we are in the first \'if\' statement.`)
+      console.log(`ourAccuracyTester ${ourAccuracyTester} <0.7, so you are able to hit the enemy!`)
       shipsArray[0].e_hull = shipsArray[0].e_hull - ourShip.firepower;
 
       if(shipsArray[0].e_hull <= 0){ //if we hit and destroy
@@ -78,11 +78,11 @@ function attack(){
 
       } 
       else{ //if we hit but do not destroy
-        console.log(`ships array hull: ${shipsArray[0].e_hull}> 0. We will go into enemyAttack function`)
+        console.log(`The enemy ship's hull is ${shipsArray[0].e_hull}> 0.Take cover, they are about to attack!`)
         enemyAttack()
       }     
     } else { //if we miss
-      console.log(`You missed because ourAccuracyTester ${ourAccuracyTester} > 0.7! This should go into enemyAttack function`)
+      console.log(`Better luck with your accuracy next time! ${ourAccuracyTester} > 0.7! Watch out, the enemy is about to attack!`)
     enemyAttack();
     }
 
@@ -96,26 +96,26 @@ attack();
 
 function enemyAttack(){
   const enemyAccuracyTester = Math.random() 
-  console.log('you are in the enemy function')
+  console.log('You are in the enemy function')
 
 
     if (enemyAccuracyTester < shipsArray[0].e_accuracy){ //if enemy hits us
       ourShip.hull = ourShip.hull - shipsArray[0].e_firepower;
-      console.log(`We got hit, enemyAccuracyTester: ${enemyAccuracyTester}<${shipsArray[0].e_accuracy}. Our new hull is ${ourShip.hull}.`)
+      console.log(`You got hit! Your new hull is ${ourShip.hull}.`)
       
 
 
 
-      if(ourShip.hull <= 0){ //if we die 
-        console.log(`Since your hull is ${ourShip.hull}, you are dead.`)  
+      if(ourShip.hull <= 0){ //if enemy hits us and we die
+        console.log(`Oh no! Your ship's hull fell below zero. You are dead.`)  
         process.exit();
       } 
-      else{
-        console.log(`enemyAccuracyTester2 > 0.1, so you will now go to attack function`)
+      else{ //if enemy hits us but we live
+        console.log(`Hang in there, you can still win this! Get ready to attack.`)
         attack()
       }     
-    } else {
-      console.log(`enemyAccuracyTester >0.6, so it should go into attack function`)
+    } else { //if enemy misses us
+      console.log(`Good job dodging their attack! Ready your aim.`)
       attack();
     }
 

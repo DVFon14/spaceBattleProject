@@ -51,12 +51,12 @@ function attack(){
   console.log(ourAccuracyTester)
 
 
-    if (ourAccuracyTester < 0.7){
-      console.log(`ourAccuracyTester <0.7, so we are in the first \'if\' statement.`)
+    if (ourAccuracyTester < 0.7){ //if we hit
+      console.log(`ourAccuracyTester ${ourAccuracyTester} <0.7, so we are in the first \'if\' statement.`)
       shipsArray[0].e_hull = shipsArray[0].e_hull - ourShip.firepower;
 
-      if(shipsArray[0].e_hull <= 0){
-        console.log(`Congratulations! You have destroyed enemy ship [0]! \n`)
+      if(shipsArray[0].e_hull <= 0){ //if we hit and destroy
+        console.log(`${shipsArray[0].e_hull} is the enemy ship's hull. Congratulations! You have destroyed enemy ship [0]! \n`)
         console.log(`Press 1 to continue, or anything else to retreate`)
         
         
@@ -77,12 +77,12 @@ function attack(){
 
 
       } 
-      else{
-        console.log(`${shipsArray[0].e_hull}> 0. We will go into enemyAttack function`)
+      else{ //if we hit but do not destroy
+        console.log(`ships array hull: ${shipsArray[0].e_hull}> 0. We will go into enemyAttack function`)
         enemyAttack()
       }     
-    } else {
-      console.log(`You missed because ${ourAccuracyTester} > 0.7! This should go into enemyAttack function`)
+    } else { //if we miss
+      console.log(`You missed because ourAccuracyTester ${ourAccuracyTester} > 0.7! This should go into enemyAttack function`)
     enemyAttack();
     }
 
@@ -99,17 +99,16 @@ function enemyAttack(){
   console.log('you are in the enemy function')
 
 
-    if (enemyAccuracyTester < shipsArray[0].e_accuracy){
+    if (enemyAccuracyTester < shipsArray[0].e_accuracy){ //if enemy hits us
       ourShip.hull = ourShip.hull - shipsArray[0].e_firepower;
-      console.log(`We got hit: ${enemyAccuracyTester}<${shipsArray[0].e_accuracy}. Our new hull is ${ourShip.hull}.`)
+      console.log(`We got hit, enemyAccuracyTester: ${enemyAccuracyTester}<${shipsArray[0].e_accuracy}. Our new hull is ${ourShip.hull}.`)
       
-      const enemyAccuracyTester2 = Math.random() 
-      //console.log(`this is random 2, ${enemyAccuracyTester2}`)
 
-      if(enemyAccuracyTester2 <0.1){
-        console.log(`random 2, ${enemyAccuracyTester2} <0.1, is in the second \'if\' statement.`)  
-        console.log(`this will break the program`)
-        process.exit();      
+
+
+      if(ourShip.hull <= 0){ //if we die 
+        console.log(`Since your hull is ${ourShip.hull}, you are dead.`)  
+        process.exit();
       } 
       else{
         console.log(`enemyAccuracyTester2 > 0.1, so you will now go to attack function`)

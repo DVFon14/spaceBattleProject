@@ -27,7 +27,10 @@ for (j = 0; j < 6; j++) {
 
 
 
-alert("\nAliens are attacking our planet! Join us in our battle to save Earth.\n " );
+alert("Aliens are attacking our planet! Join us in our battle to save Earth. " );
+alert("We are recruiting brave soldiers to each face off a squadron of 6 aliens. Don't worry, they attack one at a time.");
+alert("The odds are in your favor,\nas your Hull is a solid 20, while theirs is between 3 and 6;\n your firepower is 5, while theirs is between 2 and 4;\n and your accuracy is 0.7, while theirs is between 0.6 and 0.8");
+
 
 function start(){
     const begin = prompt("Press 1 to join, and then look at your console. If you press anything else our planet explodes!")
@@ -64,9 +67,10 @@ function attack(){
         
         if(shipsRemaining==0){
           console.log(`Our Earth is safe now thanks to your bravery, soldier! Thank you for helping to keep us safe.`)
+          process.exit();
         }
 
-        
+
         const begin2 = prompt("Press 1 to continue, or anything else to retreat.")
 
         if (begin2 == 1){
@@ -85,7 +89,7 @@ function attack(){
         enemyAttack()
       }     
     } else { //if we miss
-      console.log(`You missed the target! Watch out, the enemy is about to attack!`)
+      console.log(`You missed the target.`)
     enemyAttack();
     }
 
@@ -103,7 +107,7 @@ attack();
 
 function enemyAttack(){
   const enemyAccuracyTester = Math.random() 
-  console.log('You are in the enemy\'s aim!')
+  console.log('Watch out, the enemy is about to attack!')
 
 
     if (enemyAccuracyTester < shipsArray[i].e_accuracy){ //if enemy hits us

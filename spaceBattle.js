@@ -14,7 +14,7 @@ class enemyShipClass {
 
 const shipsArray = [];
 
-for (i = 0; i < 6; i++) {
+for (j = 0; j < 6; j++) {
   const enemyShips = new enemyShipClass();
   shipsArray.push(enemyShips);
 }
@@ -29,15 +29,15 @@ for (i = 0; i < 6; i++) {
 
 
 
-console.log("\nAliens are attacking our planet! Join us in our battle to save Earth.\n " );
+prompt("\nAliens are attacking our planet! Join us in our battle to save Earth.\n " );
 
 function start(){
-    const begin = prompt("Press 1 to join.")
+    const begin = prompt("Press 1 to join, and then look at your console. If you press anything else our planet explodes!")
 
     if (begin == 1){
         console.log("Let's begin!")
     } else {
-        console.log("Quitter!")
+        console.log("You have caused our world to explode. I hope you're proud of yourself.")
         process.exit();
     }
 }
@@ -45,18 +45,22 @@ function start(){
 start ();
 
 
+
+
+let i=0;
+
 function attack(){
-  console.log(`you are in attack function`)
+  //console.log(`you are in attack function`)
   const ourAccuracyTester = Math.random() 
-  console.log(ourAccuracyTester)
+  //console.log(ourAccuracyTester)
 
 
     if (ourAccuracyTester < 0.7){ //if we hit
-      console.log(`ourAccuracyTester ${ourAccuracyTester} <0.7, so you are able to hit the enemy!`)
-      shipsArray[0].e_hull = shipsArray[0].e_hull - ourShip.firepower;
+      //console.log(`ourAccuracyTester ${ourAccuracyTester} <0.7, so you are able to hit the enemy!`)
+      shipsArray[i].e_hull = shipsArray[i].e_hull - ourShip.firepower;
 
-      if(shipsArray[0].e_hull <= 0){ //if we hit and destroy
-        console.log(`${shipsArray[0].e_hull} is the enemy ship's hull. Congratulations! You have destroyed enemy ship [0]! \n`)
+      if(shipsArray[i].e_hull <= 0){ //if we hit and destroy
+        console.log(`Your enemy's hull is ${shipsArray[i].e_hull}. Congratulations! You have destroyed enemy ship ${[i]}! \n`)
         console.log(`Press 1 to continue, or anything else to retreate`)
         
         
@@ -64,25 +68,21 @@ function attack(){
 
         if (begin2 == 1){
             console.log("Let's continue!")
+            i++;
             attack();
         } else {
-            console.log("earth just died.")
+            console.log("Earth just died.")
             process.exit();
         }
 
 
-
-
-
-
-
       } 
       else{ //if we hit but do not destroy
-        console.log(`The enemy ship's hull is ${shipsArray[0].e_hull}> 0.Take cover, they are about to attack!`)
+        console.log(`The enemy ship's hull is ${shipsArray[i].e_hull}. Take cover, they are about to attack!`)
         enemyAttack()
       }     
     } else { //if we miss
-      console.log(`Better luck with your accuracy next time! ${ourAccuracyTester} > 0.7! Watch out, the enemy is about to attack!`)
+      console.log(`Better luck with your accuracy next time! Watch out, the enemy is about to attack!`)
     enemyAttack();
     }
 
@@ -94,13 +94,17 @@ attack();
 
 
 
+
+
+
+
 function enemyAttack(){
   const enemyAccuracyTester = Math.random() 
-  console.log('You are in the enemy function')
+  console.log('You are in the enemy\'s aim!')
 
 
-    if (enemyAccuracyTester < shipsArray[0].e_accuracy){ //if enemy hits us
-      ourShip.hull = ourShip.hull - shipsArray[0].e_firepower;
+    if (enemyAccuracyTester < shipsArray[i].e_accuracy){ //if enemy hits us
+      ourShip.hull = ourShip.hull - shipsArray[i].e_firepower;
       console.log(`You got hit! Your new hull is ${ourShip.hull}.`)
       
 

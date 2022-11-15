@@ -58,14 +58,13 @@ function attack(){
 
 
     if (ourAccuracyTester < 0.7){ //if we hit
-      //console.log(`ourAccuracyTester ${ourAccuracyTester} <0.7, so you are able to hit the enemy!`)
       shipsArray[i].e_hull = shipsArray[i].e_hull - ourShip.firepower;
 
-      if(shipsArray[i].e_hull <= 0){ //if we hit and destroy
+      if(shipsArray[i].e_hull <= 0){ //if we hit and destroy a ship
         let shipsRemaining = 5-i;
         console.log(`Your enemy's hull is ${shipsArray[i].e_hull}. Congratulations! You have destroyed enemy ship ${[i]}! You have ${shipsRemaining} ships left to destroy.\n`)
         
-        if(shipsRemaining==0){
+        if(shipsRemaining==0){ //if we've destroyed ALL ships. End of game
           console.log(`Our Earth is safe now thanks to your bravery, soldier! Thank you for helping to keep us safe.`)
           process.exit();
         }
@@ -126,7 +125,7 @@ function enemyAttack(){
         attack()
       }     
     } else { //if enemy misses us
-      console.log(`Good job dodging their attack! Ready your aim.`)
+      console.log(`Good job dodging! Ready your aim.`)
       attack();
     }
 

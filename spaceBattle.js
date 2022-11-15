@@ -27,9 +27,7 @@ for (j = 0; j < 6; j++) {
 
 
 
-
-
-prompt("\nAliens are attacking our planet! Join us in our battle to save Earth.\n " );
+alert("\nAliens are attacking our planet! Join us in our battle to save Earth.\n " );
 
 function start(){
     const begin = prompt("Press 1 to join, and then look at your console. If you press anything else our planet explodes!")
@@ -47,12 +45,13 @@ start ();
 
 
 
+
+
 let i=0;
 
 function attack(){
-  //console.log(`you are in attack function`)
   const ourAccuracyTester = Math.random() 
-  //console.log(ourAccuracyTester)
+
 
 
     if (ourAccuracyTester < 0.7){ //if we hit
@@ -60,15 +59,19 @@ function attack(){
       shipsArray[i].e_hull = shipsArray[i].e_hull - ourShip.firepower;
 
       if(shipsArray[i].e_hull <= 0){ //if we hit and destroy
-        console.log(`Your enemy's hull is ${shipsArray[i].e_hull}. Congratulations! You have destroyed enemy ship ${[i]}! \n`)
-        console.log(`Press 1 to continue, or anything else to retreate`)
+        let shipsRemaining = 5-i;
+        console.log(`Your enemy's hull is ${shipsArray[i].e_hull}. Congratulations! You have destroyed enemy ship ${[i]}! You have ${shipsRemaining} ships left to destroy.\n`)
         
+        if(shipsRemaining==0){
+          console.log(`Our Earth is safe now thanks to your bravery, soldier! Thank you for helping to keep us safe.`)
+        }
+
         
-        const begin2 = prompt("Press 1 to continue.")
+        const begin2 = prompt("Press 1 to continue, or anything else to retreat.")
 
         if (begin2 == 1){
-            console.log("Let's continue!")
-            i++;
+             i++;
+             console.log("Let's continue!")
             attack();
         } else {
             console.log("Earth just died.")
@@ -82,7 +85,7 @@ function attack(){
         enemyAttack()
       }     
     } else { //if we miss
-      console.log(`Better luck with your accuracy next time! Watch out, the enemy is about to attack!`)
+      console.log(`You missed the target! Watch out, the enemy is about to attack!`)
     enemyAttack();
     }
 
